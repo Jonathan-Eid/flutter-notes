@@ -1,2 +1,2 @@
-# flutter-notes
-Note Taking &amp; Alarm Application made in flutter
+# Flutter Notes
+Note Taking &amp; Alarm Application made with Flutter
