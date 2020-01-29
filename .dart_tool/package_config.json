@@ -56,6 +56,12 @@
       "languageVersion": "2.0"
     },
     {
+      "name": "fancy_bottom_navigation",
+      "rootUri": "file:///C:/Users/Juna/flutter/.pub-cache/hosted/pub.dartlang.org/fancy_bottom_navigation-0.3.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "flutter",
       "rootUri": "file:///C:/Users/Juna/flutter/packages/flutter",
       "packageUri": "lib/",
@@ -176,7 +182,7 @@
       "languageVersion": "2.1"
     }
   ],
-  "generated": "2020-01-29T01:05:39.135577Z",
+  "generated": "2020-01-29T01:25:38.064072Z",
   "generator": "pub",
   "generatorVersion": "2.7.0"
 }
