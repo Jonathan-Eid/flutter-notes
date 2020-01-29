@@ -10,8 +10,9 @@ class TabsPage extends StatefulWidget {
 
 class _TabsPageState extends State<TabsPage> with SingleTickerProviderStateMixin {
   final List<Tab> _tabs = <Tab>[
-    Tab(text: 'LEFT'),
-    Tab(text: 'RIGHT'),
+    Tab(icon: Icon(Icons.book), text: "Notes"),
+    Tab(icon: Icon(Icons.access_alarm), text: "Alarms"),
+    Tab(icon: Icon(Icons.history), text: "History")
   ];
 
   TabController _tabController;
@@ -31,21 +32,21 @@ class _TabsPageState extends State<TabsPage> with SingleTickerProviderStateMixin
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        bottom: TabBar(
+      bottomNavigationBar: TabBar(
           controller: _tabController,
           tabs: _tabs,
+          labelColor: Colors.black87,
+          indicatorColor: Colors.black87,
         ),
-      ),
       body: TabBarView(
         controller: _tabController,
         children: _tabs.map((Tab tab) {
-          final String label = tab.text.toLowerCase();
+          //final String label = tab.text.toLowerCase();
           return Center(
-            child: Text(
-              'This is the $label tab',
-              style: const TextStyle(fontSize: 36),
-            ),
+            //child: Text(
+              //'This is the $label tab',
+              //style: const TextStyle(fontSize: 36),
+            //),
           );
         }).toList(),
       ),
