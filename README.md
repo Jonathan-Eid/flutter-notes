@@ -2,7 +2,7 @@
 Note Taking &amp; Alarm Application made with Flutter
 
 
-##Launch
+## Launch
 
 Clone this repository
 
