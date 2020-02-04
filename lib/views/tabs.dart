@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_notes/views/screens/notes.dart';
 
 class TabsPage extends StatefulWidget {
   const TabsPage({ Key key }) : super(key: key);
@@ -14,6 +15,12 @@ class _TabsPageState extends State<TabsPage> with SingleTickerProviderStateMixin
     Tab(icon: Icon(Icons.access_alarm), text: "Alarms"),
     Tab(icon: Icon(Icons.history), text: "History")
   ];
+
+  final List<Widget> widgets= <Widget>[
+          NotesPage(title: "Notes"),
+          NotesPage(title: "Alarms"),
+          NotesPage(title: "History")
+        ];
 
   TabController _tabController;
 
@@ -40,16 +47,8 @@ class _TabsPageState extends State<TabsPage> with SingleTickerProviderStateMixin
         ),
       body: TabBarView(
         controller: _tabController,
-        children: _tabs.map((Tab tab) {
-          //final String label = tab.text.toLowerCase();
-          return Center(
-            //child: Text(
-              //'This is the $label tab',
-              //style: const TextStyle(fontSize: 36),
-            //),
-          );
-        }).toList(),
-      ),
+        children: widgets,
+      )
     );
   }
 }

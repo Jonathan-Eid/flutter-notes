@@ -1,4 +1,4 @@
-#Tue Jan 28 20:14:40 EST 2020
+#Mon Feb 03 22:06:43 EST 2020
 base.0=C\:\\Users\\Juna\\Documents\\flutter-notes\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
