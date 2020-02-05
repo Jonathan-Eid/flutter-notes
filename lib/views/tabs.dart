@@ -17,9 +17,9 @@ class _TabsPageState extends State<TabsPage> with SingleTickerProviderStateMixin
   ];
 
   final List<Widget> widgets= <Widget>[
-          NotesPage(title: "Notes"),
-          NotesPage(title: "Alarms"),
-          NotesPage(title: "History")
+          NotesPage(),
+          NotesPage(),
+          NotesPage()
         ];
 
   TabController _tabController;

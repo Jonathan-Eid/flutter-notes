@@ -8,15 +8,15 @@ class Notes {
   
 
   Notes.fromMap(Map<String, dynamic> map) {
-    this.id = map['_id'];
+    this.id = map['id'];
     this.header = map['header'];
     this.content = map['content'];
-    this.date = DateTime.parse(map['date']);
+    this.date = DateTime.fromMicrosecondsSinceEpoch(map['date']);
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      '_id': this.id,
+      'id': this.id,
       'header': this.header,
       'content': this.content,
       'date': this.date.millisecondsSinceEpoch

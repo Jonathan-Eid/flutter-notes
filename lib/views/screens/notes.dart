@@ -5,8 +5,15 @@ import 'package:flutter_notes/views/modals/notes.dart';
 import 'package:intl/intl.dart';
 
 
-class NotesPage extends StatelessWidget {
-  NotesPage({Key key, this.title}) : super(key: key);
+class NotesPage extends StatefulWidget {
+
+  @override
+  _NotesPageState createState() => _NotesPageState();
+  
+}
+
+
+class _NotesPageState extends State<NotesPage> {
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -17,65 +24,88 @@ class NotesPage extends StatelessWidget {
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
 
-  final String title;
 
-  Future<List<Notes>> curMonthNotes = NotesService().retrieveCurrentMonthsNotes();
+  Future<List<Notes>> curMonthNotes;
+
+    @override
+  void initState() {
+    super.initState();
+    curMonthNotes = NotesService().retrieveCurrentMonthsNotes();
+  }
+
+
+  reloadData(){
+        curMonthNotes = NotesService().retrieveCurrentMonthsNotes();
+  }
   
+  
+  Widget noteCard(BuildContext context, Notes note){
 
 
-Widget notesDisplay(BuildContext context) {
-  return FutureBuilder<List<Notes>>(
-    future: curMonthNotes, // a previously-obtained Future<String> or null
-    builder: (BuildContext context, AsyncSnapshot<List<Notes>> snapshot) {
-      List<Widget> children;
-
-      if (snapshot.hasData) {
-        children = <Widget>[
-          Icon(
-            Icons.check_circle_outline,
-            color: Colors.green,
-            size: 60,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16),
-            child: Text('Result: ${snapshot.data}'),
-          )
-        ];
-      } else if (snapshot.hasError) {
-        children = <Widget>[
-          Icon(
-            Icons.error_outline,
-            color: Colors.red,
-            size: 60,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16),
-            child: Text('Error: ${snapshot.error}'),
-          )
-        ];
-      } else {
-        children = <Widget>[
-          SizedBox(
-            child: CircularProgressIndicator(),
-            width: 60,
-            height: 60,
-          ),
-          const Padding(
-            padding: EdgeInsets.only(top: 16),
-            child: Text('Awaiting result...'),
-          )
-        ];
-      }
-      return Center(
+    return Card(
+      child: new InkWell(
+        onTap: () {
+          Navigator.push(
+            context, 
+            MaterialPageRoute(builder: (context) => NotesModal(note: note,)) ).whenComplete(reloadData);
+        },
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: children,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            ListTile(
+              leading: Icon(Icons.note),
+              title: Text(note.header),
+              subtitle: Text(note.content),
+            ),
+          ],
         ),
-      );
-    },
-  );
-}
+          )
+      );  
+      }
+
+  Widget notesDisplay(BuildContext context) {
+    return FutureBuilder<List<Notes>>(
+      future: curMonthNotes, // a previously-obtained Future<String> or null
+      builder: (BuildContext context, AsyncSnapshot<List<Notes>> snapshot) {
+        List<Widget> children;
+
+        if (snapshot.hasData) {
+
+          List<Notes> notes = snapshot.data;
+
+            return ListView(children: <Widget>[for (Notes note in notes) noteCard(context, note)]);
+        } else if (snapshot.hasError) {
+          children = <Widget>[
+            Icon(
+              Icons.error_outline,
+              color: Colors.red,
+              size: 60,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 16),
+              child: Text('Error: ${snapshot.error}'),
+            )
+          ];
+        } else {
+          children = <Widget>[
+            SizedBox(
+              child: CircularProgressIndicator(),
+              width: 60,
+              height: 60,
+            ),
+            const Padding(
+              padding: EdgeInsets.only(top: 16),
+              child: Text('Awaiting notes...'),
+            )
+          ];
+        }
+        return Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: children
+          );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +140,7 @@ Widget notesDisplay(BuildContext context) {
         onPressed:() {
           Navigator.push(
             context, 
-            MaterialPageRoute(builder: (context) => NotesModal()));
+            MaterialPageRoute(builder: (context) => NotesModal()) ).whenComplete(reloadData);
         },
         backgroundColor: Colors.black87,
         tooltip: 'Add Note',

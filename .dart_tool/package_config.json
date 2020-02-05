@@ -197,10 +197,10 @@
       "name": "flutter_notes",
       "rootUri": "../",
       "packageUri": "lib/",
-      "languageVersion": "2.1"
+      "languageVersion": "2.2"
     }
   ],
-  "generated": "2020-02-02T01:16:18.617378Z",
+  "generated": "2020-02-04T03:33:16.162913Z",
   "generator": "pub",
   "generatorVersion": "2.7.0"
 }

@@ -23,6 +23,8 @@ class NotesService{
 
     final Database db = await database;
 
+    print(note);
+
     // Insert the Dog into the correct table. You might also specify the
     // `conflictAlgorithm` to use in case the same dog is inserted twice.
     //
@@ -30,6 +32,26 @@ class NotesService{
     await db.insert(
       'notes',
       note.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+  }
+
+    Future<void> updateNote(Notes note) async {
+
+    final Database db = await database;
+
+    print("UPDATE: " + note.header + note.content);
+
+    int id = note.id;
+
+    // Insert the Dog into the correct table. You might also specify the
+    // `conflictAlgorithm` to use in case the same dog is inserted twice.
+    //
+    // In this case, replace any previous data.
+    await db.update(
+      'Notes',
+      note.toMap(),
+      where: "id = $id",
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
@@ -44,8 +66,10 @@ class NotesService{
 
     final db = await database;
     List<Notes> notesList = [];
-    List<Map> maps = await db.query('Notes', where: 'date > $month_start');
+    List<Map> maps = await db.query('Notes', where: 'date > $month_start', orderBy: 'date DESC');
     
+    print(maps);
+
     if (maps.length > 0) {
       maps.forEach((map) {
         notesList.add(Notes.fromMap(map));
@@ -63,6 +87,13 @@ class NotesService{
     if (maps.length > 0) {
       return Notes.fromMap(maps[0]);
     }
+   
+  }
+
+    Future<void> deleteNote(int id) async {
+    final db = await database;
+    List<Notes> notesList = [];
+    Future<int> deleted = db.delete('Notes', where: 'id = $id');
    
   }
 
@@ -90,7 +121,7 @@ class NotesService{
   Future<Database> init() async{
     Database database = await DatabaseService().database;
     database.execute(
-      "CREATE TABLE IF NOT EXISTS notes(id INTEGER PRIMARY KEY, header TEXT, content TEXT, date INT)",
+      "CREATE TABLE IF NOT EXISTS notes(id INTEGER PRIMARY KEY AUTOINCREMENT, header TEXT, content TEXT, date INT)",
     );
     return database;
   }
