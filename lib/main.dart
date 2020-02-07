@@ -1,10 +1,18 @@
+import 'dart:isolate';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_notes/views/index.dart';
-import 'package:flutter_notes/views/screens/home.dart';
+import 'package:android_alarm_manager/android_alarm_manager.dart';
+import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
+import 'package:android_intent/android_intent.dart';
 
-void main() => runApp(Notes());
 
-class Notes extends StatelessWidget {
+
+void main() async {
+  runApp(NotesApp());
+}
+
+class NotesApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {

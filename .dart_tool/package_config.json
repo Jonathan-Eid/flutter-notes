@@ -2,6 +2,18 @@
   "configVersion": 2,
   "packages": [
     {
+      "name": "android_alarm_manager",
+      "rootUri": "file:///C:/Users/Juna/flutter/.pub-cache/hosted/pub.dartlang.org/android_alarm_manager-0.4.5+3",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "android_intent",
+      "rootUri": "file:///C:/Users/Juna/flutter/.pub-cache/hosted/pub.dartlang.org/android_intent-0.3.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "archive",
       "rootUri": "file:///C:/Users/Juna/flutter/.pub-cache/hosted/pub.dartlang.org/archive-2.0.11",
       "packageUri": "lib/",
@@ -68,6 +80,12 @@
       "languageVersion": "2.2"
     },
     {
+      "name": "flutter_ringtone_player",
+      "rootUri": "file:///C:/Users/Juna/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_ringtone_player-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
       "name": "flutter_test",
       "rootUri": "file:///C:/Users/Juna/flutter/packages/flutter_test",
       "packageUri": "lib/",
@@ -114,6 +132,12 @@
       "rootUri": "file:///C:/Users/Juna/flutter/.pub-cache/hosted/pub.dartlang.org/petitparser-2.4.0",
       "packageUri": "lib/",
       "languageVersion": "2.4"
+    },
+    {
+      "name": "platform",
+      "rootUri": "file:///C:/Users/Juna/flutter/.pub-cache/hosted/pub.dartlang.org/platform-2.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "1.24"
     },
     {
       "name": "quiver",
@@ -200,7 +224,7 @@
       "languageVersion": "2.2"
     }
   ],
-  "generated": "2020-02-04T03:33:16.162913Z",
+  "generated": "2020-02-06T01:56:30.651226Z",
   "generator": "pub",
   "generatorVersion": "2.7.0"
 }

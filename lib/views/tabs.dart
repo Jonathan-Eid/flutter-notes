@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_notes/views/screens/alarm.dart';
 import 'package:flutter_notes/views/screens/notes.dart';
 
 class TabsPage extends StatefulWidget {
@@ -18,7 +19,7 @@ class _TabsPageState extends State<TabsPage> with SingleTickerProviderStateMixin
 
   final List<Widget> widgets= <Widget>[
           NotesPage(),
-          NotesPage(),
+          AlarmPage(),
           NotesPage()
         ];
 
